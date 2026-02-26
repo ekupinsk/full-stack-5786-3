@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Client-Server Task Platform  </title>
+  <link rel="stylesheet" href="./css/main.css" />
+</head>
+
+<body>
+  <header class="topbar">
+    <h1>Client-Server Task Platform</h1>
+    <div id="topbarUser" class="topbar-user"></div>
+  </header>
+
+  <main class="container" id="appRoot"></main>
+
+  <!-- SPA Templates -->
+  <template id="tpl-login">
+    <section class="card">
+      <h2>Login</h2>
+      <form id="loginForm" class="form">
+        <label>Username
+          <input name="username" autocomplete="username" required />
+        </label>
+        <label>Password
+          <input name="password" type="password" autocomplete="current-password" required />
+        </label>
+        <button class="btn" type="submit">Login</button>
+      </form>
+      <p class="muted">
+        Don't have an account? <a href="#/register">Register</a>
+      </p>
+      <pre class="status" id="loginStatus"></pre>
+    </section>
+  </template>
+
+  <template id="tpl-register">
+    <section class="card">
+      <h2>Register</h2>
+      <form id="registerForm" class="form">
+        <label>Username
+          <input name="username" autocomplete="username" required minlength="3" />
+        </label>
+        <label>Password
+          <input name="password" type="password" autocomplete="new-password" required minlength="4" />
+        </label>
+        <button class="btn" type="submit">Create account</button>
+      </form>
+      <p class="muted">
+        Already have an account? <a href="#/login">Login</a>
+      </p>
+      <pre class="status" id="registerStatus"></pre>
+    </section>
+  </template>
+
+  <template id="tpl-dashboard">
+    <section class="card">
+      <div class="row space-between">
+        <h2>My Tasks</h2>
+        <button class="btn secondary" id="logoutBtn" type="button">Logout</button>
+      </div>
+
+      <form id="addItemForm" class="row gap">
+        <input name="title" placeholder="Add new task..." required />
+        <button class="btn" type="submit">Add</button>
+      </form>
+
+      <div class="row gap">
+        <input id="searchInput" placeholder="Search..." />
+        <button class="btn secondary" id="refreshBtn" type="button">Refresh</button>
+      </div>
+
+      <ul id="itemsList" class="list"></ul>
+
+      <pre class="status" id="dashStatus"></pre>
+    </section>
+  </template>
+
+  <script type="module" src="./js/main.js"></script>
+</body>
+
+</html>
