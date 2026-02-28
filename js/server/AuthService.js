@@ -1,16 +1,17 @@
+import { DB } from "../db/DB.js";
 import { UsersRepo } from "../db/UsersRepo.js";
 
 export const AuthService = (() => {
   const TOKENS_KEY = "fajax_tokens"; // { token: userId }
 
   function loadMap() {
-    try { return JSON.parse(localStorage.getItem(TOKENS_KEY) || "{}"); }
-    catch { return {}; }
+    return DB.get(TOKENS_KEY, {});
   }
 
   function saveMap(map) {
-    localStorage.setItem(TOKENS_KEY, JSON.stringify(map));
+    DB.set(TOKENS_KEY, map);
   }
+
 
   function issueToken(userId) {
     const token = `t_${Math.random().toString(16).slice(2)}_${Date.now()}`;
